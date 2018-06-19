@@ -6,21 +6,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+import java.time.LocalDateTime;
+
+@RestController()
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
-    @RequestMapping("/user")
-    public String index() {
+    @RequestMapping("/create")
+    public void createNewUser() {
 
         User user = new User();
         user.setFirstName("Paul");
         user.setLastName("Truc");
+        user.setEmail("paul.true@mail.fr");
+        user.setInscriptionDate(LocalDateTime.now());
 
         userRepository.save(user);
-
-        return "Greetings from Spring Boot!";
     }
 }

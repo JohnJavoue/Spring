@@ -1,10 +1,13 @@
 package com.smallproject.spring.model;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "utilisateur")
@@ -20,6 +23,12 @@ public class User implements Serializable {
     @Column(name="nom")
     @NotNull
     private String lastName;
+    @NotNull
+    private String email;
+    @NotNull
+    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
+    private LocalDateTime inscriptionDate;
+
 
     public User() {}
 
@@ -50,6 +59,22 @@ public class User implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public LocalDateTime getInscriptionDate() {
+        return inscriptionDate;
+    }
+
+    public void setInscriptionDate(LocalDateTime inscriptionDate) {
+        this.inscriptionDate = inscriptionDate;
     }
 
     @Override
